@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encriptador</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <main class="conteiner">
+      <div class="actions">
+        <img id="logo" src="../img/Logo.svg" alt="Logo Alura" />
+        <div class="box">
+          <input type="text" id="message" placeholder="Ingrese texto aqui" />
+          <div class="information">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>Solo letras minúsculas y sin acentos</p>
+          </div>
+          <div class="buttons">
+            <button class="button" id="btn-encriptar">Encriptar</button>
+            <button class="button" id="btn-desencriptar">Desencriptar</button>
+          </div>
+        </div>
+      </div>
+      <div class="message">
+        <img id="doll" src="../img/Muñeco.svg" alt="Busqueda" />
+        <p>Nigún mensaje fue encontrado</p>
+        <label for="message"
+          >Ingresa el texto que desees encriptar o desencriptar</label
+        >
+      </div>
+    </main>
+  </body>
+  <script src="../js/index.js"></script>
+</html>
