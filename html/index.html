@@ -6,15 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encriptador</title>
     <link rel="stylesheet" href="../css/index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
   </head>
   <body>
     <main class="conteiner">
       <div class="actions">
-        <img id="logo" src="../img/Logo.svg" alt="Logo Alura" />
+        <div class="aluralogo">
+          <img id="logo" src="../img/Logo.svg" alt="Logo Alura" />
+        </div>
         <div class="box">
           <textarea
             name="textarea"
@@ -22,7 +20,9 @@
             placeholder="Ingrese texto aquí"
           ></textarea>
           <div class="information">
-            <i class="fa-solid fa-circle-info"></i>
+            <div class="logo-info">
+              <img src="../img/info.svg" alt="" />
+            </div>
             <p>Solo letras minúsculas y sin acentos</p>
           </div>
           <div class="buttons">
@@ -32,12 +32,11 @@
         </div>
       </div>
       <div class="message">
-        <img id="doll" src="../img/Muñeco.svg" alt="Busqueda" />
+        <div class="doll"></div>
         <p>Nigún mensaje fue encontrado</p>
         <label for="message"
           >Ingresa el texto que desees encriptar o desencriptar</label
         >
-        <button class="button is-active" id="btn-copy">Copiar</button>
       </div>
     </main>
   </body>
