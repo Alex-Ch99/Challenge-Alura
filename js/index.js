@@ -1,8 +1,18 @@
+/*Variables para trabajar con el DOM */
+const inputText = document.getElementById("message");
+const outputText = document.querySelector(".text-result");
+const btnEncriptar = document.getElementById("btn-encriptar");
+const btnDesEncriptar = document.getElementById("btn-desencriptar");
+const btnCopiar = document.getElementById("btn-copiar");
+
+let textToEncript = inputText.value;
+let textEncripted = outputText.textContent;
+
 /* *Viendo la manera de como encriptar los mensajes* */
 let encriptado = [];
 function encriptar(message) {
   let cleanMessage = message.toLowerCase().split("");
-  console.log(cleanMessage);
+  // console.log(cleanMessage);
   for (let i = 0; i < cleanMessage.length; i++) {
     if (cleanMessage[i] === "a") {
       encriptado.push("ai");
@@ -20,7 +30,7 @@ function encriptar(message) {
   }
   return encriptado.join("");
 }
-console.log(encriptar("gato"));
+// console.log(encriptar("gato"));
 
 /* *Viendo la manera de como desencriptar los mensajes* */
 let palabras = [];
@@ -47,4 +57,4 @@ function desencriptar(message) {
   }
   return palabras.join(" ");
 }
-console.log(desencriptar("uso ainoberaswefmwnjsa<k anajfa  n"));
+// console.log(desencriptar("uso ainoberaswefmwnjsa<k anajfa  n"));
