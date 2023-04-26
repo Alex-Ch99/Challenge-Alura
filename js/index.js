@@ -1,71 +1,50 @@
-console.log("Hello world");
-/*Funcion para encriptar */
-function encriptar(string) {
-  const vocales = {
-    a: "ai",
-    e: "enter",
-    i: "imes",
-    o: "ober",
-    u: "ufat",
-  };
-  //   let resultado = "";
-  //   for (let i = 0; i < string.length; i++) {
-  //     const letra = string[i].toLowerCase();
-  //     if (letra === " ") {
-  //       resultado += " ";
-  //     } else if (vocales[letra]) {
-  //       resultado += vocales[letra];
-  //     } else if (!vocales[letra]) {
-  //       resultado += string[i];
-  //     }
-  //   }
-
-  let resultado = string;
-  for (let letra in vocales) {
-    const regex = new RegExp(letra, "g");
-    resultado = resultado.replace(regex, vocales[letra]);
+/* *Viendo la manera de como encriptar los mensajes* */
+let encriptado = [];
+function encriptar(message) {
+  let cleanMessage = message.toLowerCase().split("");
+  console.log(cleanMessage);
+  for (let i = 0; i < cleanMessage.length; i++) {
+    if (cleanMessage[i] === "a") {
+      encriptado.push("ai");
+    } else if (cleanMessage[i] === "e") {
+      encriptado.push("enter");
+    } else if (cleanMessage[i] === "i") {
+      encriptado.push("imes");
+    } else if (cleanMessage[i] === "o") {
+      encriptado.push("ober");
+    } else if (cleanMessage[i] === "u") {
+      encriptado.push("ufat");
+    } else {
+      encriptado.push(cleanMessage[i]);
+    }
   }
-  return resultado;
+  return encriptado.join("");
 }
-
 console.log(encriptar("gato"));
 
-/*Funcion para desencriptar */
-function desencriptar(stringEncriptado) {
-  const vocales = {
-    ai: "a",
-    enter: "e",
-    imes: "i",
-    ober: "o",
-    ufat: "u",
-  };
-  let resultado = stringEncriptado;
-  for (let clave in vocales) {
-    let regex = new RegExp(clave, "g");
-    resultado = resultado.replace(regex, vocales[clave]);
+/* *Viendo la manera de como desencriptar los mensajes* */
+let palabras = [];
+function desencriptar(message) {
+  let messageInWords = message.split(" ");
+  console.log(messageInWords.join(" "));
+  for (let i = 0; i < messageInWords.length; i++) {
+    if (messageInWords[i].includes("ai")) {
+      messageInWords[i] = messageInWords[i].replace(/ai/g, "a");
+    }
+    if (messageInWords[i].includes("enter")) {
+      messageInWords[i] = messageInWords[i].replace(/enter/g, "e");
+    }
+    if (messageInWords[i].includes("imes")) {
+      messageInWords[i] = messageInWords[i].replace(/imes/g, "i");
+    }
+    if (messageInWords[i].includes("ober")) {
+      messageInWords[i] = messageInWords[i].replace(/ober/g, "o");
+    }
+    if (messageInWords[i].includes("ufat")) {
+      messageInWords[i] = messageInWords[i].replace(/ufat/g, "u");
+    }
+    palabras.push(messageInWords[i]);
   }
-  return resultado;
+  return palabras.join(" ");
 }
-
-console.log(
-  desencriptar(
-    "fenterlimescimesdaidenters poberr enternfrenterntair enterstenter dentersaifimesober y haibenterrlober cobernclufatimesdober cobern enterximestober!"
-  )
-);
-
-function encriptar2(string) {
-  const vocales = {
-    a: "ai",
-    e: "enter",
-    i: "imes",
-    o: "ober",
-    u: "ufat",
-  };
-  const resultado = string
-    .split("")
-    .map((letra) => vocales[letra.toLowerCase()] || letra)
-    .join("");
-  return resultado;
-}
-
-console.log(encriptar2("gato"));
+console.log(desencriptar("uso ainoberaswefmwnjsa<k anajfa  n"));
