@@ -68,7 +68,7 @@ main {
   }
 }
 
-.actions .box #message {
+.actions .box #textarea {
   width: 100%;
   resize: none;
   border: none;
@@ -82,7 +82,7 @@ main {
 }
 
 @media (min-width: 768px) {
-  .actions .box #message {
+  .actions .box #textarea {
     flex: 1;
   }
 }
@@ -191,7 +191,8 @@ main {
   height: 100%;
 }
 
-.message.message .text-result {
+.message .text-result {
+  text-align: start;
   flex: 1 0 600px;
   font-size: 24px;
   line-height: 36px;
