@@ -223,3 +223,29 @@ main {
   color: var(--dark-blue);
   background-color: transparent;
 }
+
+footer {
+  width: 100%;
+  height: auto;
+  background-color: var(--dark-blue);
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  padding: 16px;
+}
+
+.copyright .social-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 10px;
+}
+
+.fa-brands {
+  color: white;
+}
+
+.fa-brands:hover {
+  color: black;
+}
