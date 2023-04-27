@@ -1,72 +1,69 @@
+import { validateFormatText } from "./helpers.js";
+
 /*Variables para trabajar con el DOM */
 const inputText = document.getElementById("textarea");
 const outputText = document.querySelector(".text-result");
-const btnEncriptar = document.getElementById("btn-encriptar");
-const btnDesEncriptar = document.getElementById("btn-desencriptar");
-const btnCopiar = document.getElementById("btn-copiar");
-const seccionDeSalida = document.querySelector(".message");
+const btnEncrypt = document.getElementById("btn-encriptar");
+const btnDecrypt = document.getElementById("btn-desencriptar");
+const btnCopy = document.getElementById("btn-copiar");
+const outSection = document.querySelector(".message");
 
 /*Funcion para desaparecer el contenido de salida de texto*/
-function ocultarSeccionDeImagen() {
-  seccionDeSalida.classList.add("active");
-  console.log("Click al boton");
+
+function hiddenImage() {
+  if (!inputText.value || validateFormatText(inputText.value)) return;
+  outSection.classList.add("active");
 }
 
 /* Funcion para encriptar los mensajes*/
-function encriptar() {
-  let encriptado = [];
+function encrypting() {
+  let listCharacter = [];
   let textToEncript = inputText.value;
-  let mayus = /[A-Z]/.test(textToEncript);
-  let tildes = /[áéíóú]/.test(textToEncript);
-  if (tildes) {
-    alert("No se aceptan vocales con tildes");
-  }
-  if (mayus) {
-    alert("No se aceptan letras mayusculas");
-  }
-  if (textToEncript === "") {
-    alert("No ingresaste ningun texto para encriptar");
+  if (validateFormatText(textToEncript)) {
+    alert("El texto contiene alguna tilde o letra mayúscula");
+    return;
   }
   let cleanMessage = textToEncript.toLowerCase().split("");
   for (let i = 0; i < cleanMessage.length; i++) {
     if (cleanMessage[i] === "a") {
-      encriptado.push("ai");
+      listCharacter.push("ai");
     } else if (cleanMessage[i] === "e") {
-      encriptado.push("enter");
+      listCharacter.push("enter");
     } else if (cleanMessage[i] === "i") {
-      encriptado.push("imes");
+      listCharacter.push("imes");
     } else if (cleanMessage[i] === "o") {
-      encriptado.push("ober");
+      listCharacter.push("ober");
     } else if (cleanMessage[i] === "u") {
-      encriptado.push("ufat");
+      listCharacter.push("ufat");
     } else {
-      encriptado.push(cleanMessage[i]);
+      listCharacter.push(cleanMessage[i]);
     }
   }
-  let resultado = encriptado.join("");
-  console.log(resultado);
-  outputText.textContent = resultado;
+  let encryptedResult = listCharacter.join("");
+  outputText.textContent = encryptedResult;
 }
 
-btnEncriptar.addEventListener("click", ocultarSeccionDeImagen);
-btnEncriptar.addEventListener("click", encriptar);
+btnEncrypt.addEventListener("click", hiddenImage);
+btnEncrypt.addEventListener("click", encrypting);
 
+inputText.addEventListener("input", (e) => {
+  if (!e.target.value) {
+    btnEncrypt.disabled = true;
+    btnDecrypt.disabled = true;
+  } else {
+    btnEncrypt.disabled = false;
+    btnDecrypt.disabled = false;
+  }
+});
 /* Funcion para desencriptar los mensajes* */
-function desencriptar() {
-  let palabras = [];
-  let textToDesEncript = inputText.value;
-  let mayus = /[A-Z]/.test(textToDesEncript);
-  let tildes = /[áéíóú]/.test(textToDesEncript);
-  if (tildes) {
-    alert("No se aceptan vocales con tildes");
+function decryptText() {
+  let words = [];
+  let textToDecrypt = inputText.value;
+  if (validateFormatText(textToDecrypt)) {
+    alert("El texto contiene alguna tilde o letra mayúscula");
+    return;
   }
-  if (mayus) {
-    alert("No se aceptan letras mayusculas");
-  }
-  if (textToDesEncript === "") {
-    alert("No ingresaste ningun texto para desencriptar");
-  }
-  let messageInWords = textToDesEncript.toLowerCase().split(" ");
+  let messageInWords = textToDecrypt.toLowerCase().split(" ");
   for (let i = 0; i < messageInWords.length; i++) {
     if (messageInWords[i].includes("ai")) {
       messageInWords[i] = messageInWords[i].replace(/ai/g, "a");
@@ -83,20 +80,16 @@ function desencriptar() {
     if (messageInWords[i].includes("ufat")) {
       messageInWords[i] = messageInWords[i].replace(/ufat/g, "u");
     }
-    palabras.push(messageInWords[i]);
+    words.push(messageInWords[i]);
   }
-  let resultado = palabras.join(" ");
-  console.log(resultado);
-  outputText.textContent = resultado;
+  let decryptResult = words.join(" ");
+  outputText.textContent = decryptResult;
 }
-btnDesEncriptar.addEventListener("click", ocultarSeccionDeImagen);
-btnDesEncriptar.addEventListener("click", desencriptar);
+btnDecrypt.addEventListener("click", hiddenImage);
+btnDecrypt.addEventListener("click", decryptText);
 
 /*Funcion para copiar lo que hay dentro de la salida de texto */
-function copiar() {
-  if (outputText.textContent === "") {
-    alert("No hay nada para copiar");
-  }
+function copy() {
   navigator.clipboard
     .writeText(outputText.textContent)
     .then(() => {
@@ -106,4 +99,4 @@ function copiar() {
       console.error("Error al copiar el texto: ", err);
     });
 }
-btnCopiar.addEventListener("click", copiar);
+btnCopy.addEventListener("click", copy);
